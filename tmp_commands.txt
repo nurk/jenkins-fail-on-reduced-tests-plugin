@@ -1,2 +1,41 @@
 mvnDebug hpi:run -s %USERPROFILE%\.m2\settingsJenkins.xml
 mvn -s %USERPROFILE%\.m2\settingsJenkins.xml install
+mvn hpi:run -s %USERPROFILE%\.m2\settingsJenkins.xml
+
+
+
+
+MAVEN SETTINGS:
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+  <localRepository>D:\mavenRepoJENKINS</localRepository>
+
+<pluginGroups>
+    <pluginGroup>org.jenkins-ci.tools</pluginGroup>
+  </pluginGroups>
+
+  <profiles>
+    <!-- Give access to Jenkins plugins -->
+    <profile>
+      <id>jenkins</id>
+      <activation>
+        <activeByDefault>true</activeByDefault> <!-- change this to false, if you don't like to have it on per default -->
+      </activation>
+      <repositories>
+        <repository>
+          <id>repo.jenkins-ci.org</id>
+          <url>http://repo.jenkins-ci.org/public/</url>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>repo.jenkins-ci.org</id>
+          <url>http://repo.jenkins-ci.org/public/</url>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
+</settings>
