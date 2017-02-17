@@ -1,0 +1,7 @@
+<?jelly escape-by-default='true'?>
+<!--
+  This view is used to render the installed plugins page.
+-->
+<div>
+  This plugin allows you to add a post build step that will check if the amount of tests has reduced by a certain percentage.
+</div>

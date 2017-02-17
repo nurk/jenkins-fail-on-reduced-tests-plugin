@@ -1,0 +1,2 @@
+mvnDebug hpi:run -s %USERPROFILE%\.m2\settingsJenkins.xml
+mvn -s %USERPROFILE%\.m2\settingsJenkins.xml install
