@@ -58,15 +58,17 @@ public class FailOnReducedTestsBuilder extends Recorder implements SimpleBuildSt
             build.setResult(Result.UNSTABLE);
             return;
         }
+        int currentTestTotal = currentTestResults.getTotalCount() - currentTestResults.getSkipCount();
+        listener.getLogger().println("Current amount of tests: " + currentTestResults);
 
         Run<?, ?> previousBuiltBuild = build.getPreviousBuiltBuild();
         if (previousBuiltBuild != null) {
             AggregatedTestResultAction previousTestResults = previousBuiltBuild.getAction(AggregatedTestResultAction.class);
             if (previousTestResults != null) {
+                int previousTestTotal = previousTestResults.getTotalCount() - previousTestResults.getSkipCount();
+                listener.getLogger().println("Previous amount of tests: " + previousTestTotal);
                 listener.getLogger().println("Comparing with percentage");
-                int previousTotal = previousTestResults.getTotalCount() - previousTestResults.getSkipCount();
-                int currentTotal = currentTestResults.getTotalCount() - currentTestResults.getSkipCount();
-                if (currentTotal < (previousTotal - (previousTotal * percentage) / 100)) {
+                if (currentTestTotal < (previousTestTotal - (previousTestTotal * percentage) / 100)) {
                     listener.getLogger().println("Amount of tests reduced too much");
                     build.setResult(Result.UNSTABLE);
                     return;
