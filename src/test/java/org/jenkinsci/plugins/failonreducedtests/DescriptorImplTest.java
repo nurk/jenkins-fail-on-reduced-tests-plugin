@@ -12,30 +12,6 @@ public class DescriptorImplTest {
     private FailOnReducedTestsBuilder.DescriptorImpl descriptorImpl = new FailOnReducedTestsBuilder.DescriptorImpl(false);
 
     @Test
-    public void constructor_givenValidValues_thenValuesSet() {
-        FailOnReducedTestsBuilder builder = new FailOnReducedTestsBuilder("10.5", "10");
-
-        assertThat(builder.getPercentage()).isEqualTo(10.5);
-        assertThat(builder.getMinimumAmount()).isEqualTo(10);
-    }
-
-    @Test
-    public void constructor_givenWrongPercentageValue_thenDefaultValues() {
-        FailOnReducedTestsBuilder builder = new FailOnReducedTestsBuilder("10.5b", "10");
-
-        assertThat(builder.getPercentage()).isEqualTo(100);
-        assertThat(builder.getMinimumAmount()).isEqualTo(0);
-    }
-
-    @Test
-    public void constructor_givenWrongMinimumAmountValue_thenDefaultValues() {
-        FailOnReducedTestsBuilder builder = new FailOnReducedTestsBuilder("10.5", "10b");
-
-        assertThat(builder.getPercentage()).isEqualTo(100);
-        assertThat(builder.getMinimumAmount()).isEqualTo(0);
-    }
-
-    @Test
     public void doCheckPercentage_givenEmptyString_thenFormValidationError() throws IOException, ServletException {
         FormValidation actual = descriptorImpl.doCheckPercentage("");
 
