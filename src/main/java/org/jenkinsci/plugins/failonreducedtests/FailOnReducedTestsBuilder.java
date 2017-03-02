@@ -38,15 +38,15 @@ public class FailOnReducedTestsBuilder extends Recorder implements SimpleBuildSt
         }
     }
 
-    public Double getPercentage() {
+    Double getPercentage() {
         return percentage;
     }
 
-    public Integer getMinimumAmount() {
+    Integer getMinimumAmount() {
         return minimumAmount;
     }
 
-    public boolean isConfigurationError() {
+    boolean isConfigurationError() {
         return configurationError;
     }
 
@@ -88,7 +88,6 @@ public class FailOnReducedTestsBuilder extends Recorder implements SimpleBuildSt
         if (currentTestResults.getTotalCount() - currentTestResults.getSkipCount() < minimumAmount) {
             listener.getLogger().println("Not enough unit tests");
             build.setResult(Result.UNSTABLE);
-            return;
         }
     }
 
