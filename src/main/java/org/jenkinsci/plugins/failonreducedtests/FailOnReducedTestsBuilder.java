@@ -26,6 +26,7 @@ public class FailOnReducedTestsBuilder extends Recorder implements SimpleBuildSt
 
     private Double percentage = 100d;
     private Integer minimumAmount = 0;
+    private boolean configurationError = false;
 
     @DataBoundConstructor
     public FailOnReducedTestsBuilder(String percentage, String minimumAmount) {
@@ -33,8 +34,7 @@ public class FailOnReducedTestsBuilder extends Recorder implements SimpleBuildSt
             this.percentage = Double.valueOf(percentage);
             this.minimumAmount = Integer.valueOf(minimumAmount);
         } catch (Exception e) {
-            this.percentage = 100d;
-            this.minimumAmount = 0;
+            configurationError = true;
         }
     }
 
@@ -46,8 +46,16 @@ public class FailOnReducedTestsBuilder extends Recorder implements SimpleBuildSt
         return minimumAmount;
     }
 
+    public boolean isConfigurationError() {
+        return configurationError;
+    }
+
     @Override
     public void perform(Run<?, ?> build, FilePath workspace, Launcher launcher, TaskListener listener) {
+        if(configurationError){
+            listener.getLogger().println("Not configured correctly, skipping");
+            return;
+        }
         listener.getLogger().println("Verifying amount of unit tests.");
         listener.getLogger().println("percentage: " + getPercentage());
         listener.getLogger().println("minimum amount: " + getMinimumAmount());
@@ -59,7 +67,7 @@ public class FailOnReducedTestsBuilder extends Recorder implements SimpleBuildSt
             return;
         }
         int currentTestTotal = currentTestResults.getTotalCount() - currentTestResults.getSkipCount();
-        listener.getLogger().println("Current amount of tests: " + currentTestResults);
+        listener.getLogger().println("Current amount of tests: " + currentTestTotal);
 
         Run<?, ?> previousBuiltBuild = build.getPreviousBuiltBuild();
         if (previousBuiltBuild != null) {
@@ -78,7 +86,7 @@ public class FailOnReducedTestsBuilder extends Recorder implements SimpleBuildSt
 
         listener.getLogger().println("No previous successful build found, comparing with minimum amount");
         if (currentTestResults.getTotalCount() - currentTestResults.getSkipCount() < minimumAmount) {
-            listener.getLogger().print("Not enough unit tests");
+            listener.getLogger().println("Not enough unit tests");
             build.setResult(Result.UNSTABLE);
             return;
         }
