@@ -54,6 +54,19 @@
             <url>http://opensource.org/licenses/MIT</url>
         </license>
     </licenses>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eluder.coveralls</groupId>
+				<artifactId>coveralls-maven-plugin</artifactId>
+				<version>4.3.0</version>
+				<configuration>
+					<repoToken>yourcoverallsprojectrepositorytoken</repoToken>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
     <!-- If you want this to appear on the wiki page:
     <developers>
