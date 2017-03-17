@@ -5,6 +5,7 @@ mvn hpi:run -s %USERPROFILE%\.m2\settingsJenkins.xml
 
 
 
+
 MAVEN SETTINGS:
 <?xml version="1.0" encoding="UTF-8"?>
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
