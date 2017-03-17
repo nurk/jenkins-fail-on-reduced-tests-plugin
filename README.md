@@ -1,4 +1,4 @@
-# jenkins-fail-on-reduced-tests-plugin
+# jenkins-fail-on-reduced-tests-plugin [![Build Status](https://travis-ci.org/nurk/jenkins-fail-on-reduced-tests-plugin.svg?branch=master)](https://travis-ci.org/nurk/jenkins-fail-on-reduced-tests-plugin)
 This plugin is a post build action plugin.
 
 It allows you to configure a percentage that the amount of unit tests are allowed to reduce.
