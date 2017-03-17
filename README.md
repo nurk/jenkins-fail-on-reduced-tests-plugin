@@ -7,3 +7,8 @@ If no previous successful build is found it will fallback on the minimum amount 
 
 It will mark the build as unstable if the amount of unit tests does not meet the set criteria which will help protect your project from configuration mistakes.
 (It considers skipped tests as tests that have not run)
+
+
+## License
+
+Licensed under MIT
