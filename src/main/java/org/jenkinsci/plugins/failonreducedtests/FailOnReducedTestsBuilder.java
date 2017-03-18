@@ -52,7 +52,7 @@ public class FailOnReducedTestsBuilder extends Recorder implements SimpleBuildSt
 
     @Override
     public void perform(Run<?, ?> build, FilePath workspace, Launcher launcher, TaskListener listener) {
-        if(configurationError){
+        if (configurationError) {
             listener.getLogger().println("Not configured correctly, skipping");
             return;
         }
@@ -108,8 +108,8 @@ public class FailOnReducedTestsBuilder extends Recorder implements SimpleBuildSt
             load();
         }
 
-        public DescriptorImpl(boolean load){
-            if(load){
+        public DescriptorImpl(boolean load) {
+            if (load) {
                 load();
             }
         }

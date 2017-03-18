@@ -52,4 +52,14 @@ public class DescriptorImplTest {
 
         assertThat(actual.getMessage()).isNull();
     }
+
+    @Test
+    public void isApplicable() {
+        assertThat(descriptorImpl.isApplicable(null)).isTrue();
+    }
+
+    @Test
+    public void getDisplayName() {
+        assertThat(descriptorImpl.getDisplayName()).isEqualTo("Fail on reduced tests");
+    }
 }

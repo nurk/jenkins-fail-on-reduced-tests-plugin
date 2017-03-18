@@ -3,6 +3,7 @@ package org.jenkinsci.plugins.failonreducedtests;
 import hudson.model.Result;
 import hudson.model.Run;
 import hudson.model.TaskListener;
+import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.test.AggregatedTestResultAction;
 import org.junit.Before;
 import org.junit.Test;
@@ -200,5 +201,11 @@ public class FailOnReducedTestsBuilderTest {
         verify(logger).println("Current amount of tests: 90");
         verify(logger).println("Previous amount of tests: 100");
         verify(build, never()).setResult(Result.UNSTABLE);
+    }
+
+    @Test
+    public void getRequiredMonitorService() {
+        FailOnReducedTestsBuilder builder = new FailOnReducedTestsBuilder("10", "10");
+        assertThat(builder.getRequiredMonitorService()).isEqualTo(BuildStepMonitor.NONE);
     }
 }
