@@ -24,7 +24,7 @@ public class FailOnReducedTestsBuilderTest {
     private Run build;
     @Mock
     private Run previousBuild;
-    @Mock(answer = Answers.RETURNS_DEEP_STUBS)
+    @Mock
     private TaskListener listener;
     @Mock
     private AggregatedTestResultAction currentTestResults;
